@@ -1,0 +1,110 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  _id: String!
+
+  """User firstName """
+  firstName: String!
+
+  """User lastName """
+  lastName: String!
+
+  """User email """
+  email: String!
+
+  """User role"""
+  role: String!
+}
+
+type PageDataDto {
+  count: Float!
+  limit: Float!
+  offset: Float!
+}
+
+type ListUsersResponse {
+  page: UserConnection!
+  pageData: PageDataDto
+}
+
+type UserConnection {
+  edges: [UserEdge!]
+  pageInfo: UserPageInfo
+}
+
+type UserEdge {
+  cursor: String
+  node: User
+}
+
+type UserPageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
+type Query {
+  users(listUsersInput: ListUsersInput!): [User!]!
+  user(_id: String!): User!
+  listUsersWithCursor(args: ConnectionArgs!): ListUsersResponse!
+}
+
+input ListUsersInput {
+  """classical limit"""
+  limit: Float!
+
+  """classical offset"""
+  offset: Float!
+}
+
+input ConnectionArgs {
+  """Paginate before opaque cursor"""
+  before: String
+
+  """Paginate after opaque cursor"""
+  after: String
+
+  """Paginate first"""
+  first: Float
+
+  """Paginate last"""
+  last: Float
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(_id: String!): User!
+}
+
+input CreateUserInput {
+  """first name of the user"""
+  firstName: String!
+
+  """last name of the user"""
+  lastName: String!
+
+  """email of the user"""
+  email: String!
+
+  """role of the user"""
+  role: String!
+}
+
+input UpdateUserInput {
+  """first name of the user"""
+  firstName: String
+
+  """last name of the user"""
+  lastName: String
+
+  """email of the user"""
+  email: String
+
+  """role of the user"""
+  role: String
+  _id: String!
+}
