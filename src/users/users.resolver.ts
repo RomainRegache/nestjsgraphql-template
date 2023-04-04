@@ -5,7 +5,9 @@ import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { ListUsersInput } from './dto/list-user.input';
 import { ListUsersResponse } from './dto/list-user.response';
-import ConnectionArgs, { getPagingParameters } from 'src/common/relay/connection.args';
+import ConnectionArgs, {
+  getPagingParameters,
+} from 'src/common/relay/connection.args';
 import { connectionFromArraySlice } from 'graphql-relay';
 
 @Resolver(() => User)
@@ -28,7 +30,9 @@ export class UsersResolver {
   }
 
   @Query(() => ListUsersResponse, { name: 'listUsersWithCursor' })
-  async findAllWithCursor(@Args('args') args: ConnectionArgs): Promise<ListUsersResponse> {
+  async findAllWithCursor(
+    @Args('args') args: ConnectionArgs,
+  ): Promise<ListUsersResponse> {
     const { limit, offset } = getPagingParameters(args);
     const { users, count } = await this.usersService.getUsers({
       limit,
@@ -37,10 +41,10 @@ export class UsersResolver {
     const page = connectionFromArraySlice(users, args, {
       arrayLength: count,
       sliceStart: offset || 0,
-  });
+    });
 
-  return { page, pageData: { count, limit, offset } };
-}
+    return { page, pageData: { count, limit, offset } };
+  }
 
   @Mutation(() => User)
   updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {

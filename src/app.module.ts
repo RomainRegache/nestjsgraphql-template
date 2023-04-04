@@ -8,12 +8,7 @@ import { ConfigModule } from './common/config.module';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 
 @Module({
-  imports: [
-    CommonModule,
-    UsersModule,
-    ConfigModule,
-    RestaurantsModule,
-  ],
+  imports: [CommonModule, UsersModule, ConfigModule, RestaurantsModule],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -29,6 +29,7 @@
     "@nestjs/mongoose": "^9.2.1",
     "@nestjs/platform-express": "^8.0.0",
     "apollo-server-express": "2.x.x",
+    "class-validator": "^0.14.0",
     "graphql": "^15.5.1",
     "graphql-relay": "^0.10.0",
     "mongoose": "^7.0.1",

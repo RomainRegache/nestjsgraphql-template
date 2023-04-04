@@ -5,16 +5,24 @@
 type User {
   _id: String!
 
-  """User firstName """
+  """
+  User firstName
+  """
   firstName: String!
 
-  """User lastName """
+  """
+  User lastName
+  """
   lastName: String!
 
-  """User email """
+  """
+  User email
+  """
   email: String!
 
-  """User role"""
+  """
+  User role
+  """
   role: String!
 }
 
@@ -46,31 +54,74 @@ type UserPageInfo {
   hasNextPage: Boolean!
 }
 
+type Restaurant {
+  _id: String!
+
+  """
+  Nom du restaurant
+  """
+  nom: String!
+
+  """
+  Adresse
+  """
+  adresse: String!
+
+  """
+  Code postal
+  """
+  codePostal: Float!
+
+  """
+  Commentaire
+  """
+  commentaire: String!
+
+  """
+  Utilisateur l'ajoutant
+  """
+  createur: User!
+}
+
 type Query {
   users(listUsersInput: ListUsersInput!): [User!]!
   user(_id: String!): User!
   listUsersWithCursor(args: ConnectionArgs!): ListUsersResponse!
+  restaurant(_id: String!): Restaurant!
+  restaurants: [Restaurant!]!
 }
 
 input ListUsersInput {
-  """classical limit"""
+  """
+  classical limit
+  """
   limit: Float!
 
-  """classical offset"""
+  """
+  classical offset
+  """
   offset: Float!
 }
 
 input ConnectionArgs {
-  """Paginate before opaque cursor"""
+  """
+  Paginate before opaque cursor
+  """
   before: String
 
-  """Paginate after opaque cursor"""
+  """
+  Paginate after opaque cursor
+  """
   after: String
 
-  """Paginate first"""
+  """
+  Paginate first
+  """
   first: Float
 
-  """Paginate last"""
+  """
+  Paginate last
+  """
   last: Float
 }
 
@@ -78,33 +129,107 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(_id: String!): User!
+  createRestaurant(createRestaurantInput: CreateRestaurantInput!): Restaurant!
+  updateRestaurant(updateRestaurantInput: UpdateRestaurantInput!): Restaurant!
+  removeRestaurant(_id: String!): Restaurant!
 }
 
 input CreateUserInput {
-  """first name of the user"""
+  """
+  first name of the user
+  """
   firstName: String!
 
-  """last name of the user"""
+  """
+  last name of the user
+  """
   lastName: String!
 
-  """email of the user"""
+  """
+  email of the user
+  """
   email: String!
 
-  """role of the user"""
+  """
+  role of the user
+  """
   role: String!
 }
 
 input UpdateUserInput {
-  """first name of the user"""
+  """
+  first name of the user
+  """
   firstName: String
 
-  """last name of the user"""
+  """
+  last name of the user
+  """
   lastName: String
 
-  """email of the user"""
+  """
+  email of the user
+  """
   email: String
 
-  """role of the user"""
+  """
+  role of the user
+  """
   role: String
+  _id: String!
+}
+
+input CreateRestaurantInput {
+  """
+  Nom du restaurant
+  """
+  nom: String!
+
+  """
+  Adresse
+  """
+  adresse: String!
+
+  """
+  Code postal
+  """
+  codePostal: Float!
+
+  """
+  Commentaire
+  """
+  commentaire: String!
+
+  """
+  ID de l'utilisateur créateur
+  """
+  idCreateur: String!
+}
+
+input UpdateRestaurantInput {
+  """
+  Nom du restaurant
+  """
+  nom: String
+
+  """
+  Adresse
+  """
+  adresse: String
+
+  """
+  Code postal
+  """
+  codePostal: Float
+
+  """
+  Commentaire
+  """
+  commentaire: String
+
+  """
+  ID de l'utilisateur créateur
+  """
+  idCreateur: String
   _id: String!
 }

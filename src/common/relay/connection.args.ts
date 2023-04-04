@@ -1,4 +1,8 @@
-import { ConnectionArguments, ConnectionCursor, fromGlobalId } from 'graphql-relay';
+import {
+  ConnectionArguments,
+  ConnectionCursor,
+  fromGlobalId,
+} from 'graphql-relay';
 import { Field, InputType } from '@nestjs/graphql';
 
 type PagingMeta =
@@ -21,15 +25,15 @@ function checkPagingSanity(args: ConnectionArgs): PagingMeta {
     throw new Error('Paging limit must be positive!');
   }
   if (last && !before) {
-    throw new Error('When paging backwards, a \'before\' argument is required!');
+    throw new Error("When paging backwards, a 'before' argument is required!");
   }
 
   // eslint-disable-next-line no-nested-ternary
   return isForwardPaging
     ? { pagingType: 'forward', after, first }
     : isBackwardPaging
-      ? { pagingType: 'backward', before, last }
-      : { pagingType: 'none' };
+    ? { pagingType: 'backward', before, last }
+    : { pagingType: 'none' };
 }
 
 const getId = (cursor: ConnectionCursor) =>

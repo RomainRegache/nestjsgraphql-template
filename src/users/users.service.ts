@@ -23,7 +23,7 @@ export class UsersService {
     return this.userModel.find().skip(offset).limit(limit).exec();
   }
 
-  async findOne(id: string) {
+  public async findOne(id: string) {
     const user = await this.userModel.findOne({ _id: id }).exec();
     if (!user) {
       throw new NotFoundException(`User ${id} not found`);
